@@ -41,7 +41,7 @@ class Calc:
                                width=5, height=3, command=lambda: self.touch("*"))
 
         self.button_equal = Button(self.frame, bg="orange", bd=0, text="=", font="arial 20 bold", fg="white",
-                               width=10, height=3, command= lambda: self.touch("="))
+                               width=10, height=3, command= self.total)
 
         self.button_clear = Button(self.frame, bg="orange", bd=0, text="C", font="arial 20 bold", fg="white",
                                width=5, height=3, command=self.Clean)
@@ -69,5 +69,10 @@ class Calc:
 
     def Clean(self):
         self.screen_numbers.delete(0, END)
+
+    def total(self):
+        result = eval(self.screen_numbers.get())
+        self.screen_numbers.delete(0, END)
+        self.screen_numbers.insert(0, str(result))
 
 Calc()
